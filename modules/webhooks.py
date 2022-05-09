@@ -31,6 +31,8 @@ class Webhooks:
                         if response.status_code < 500:
                             break
             else:
+                if webhook.startswith(f"https://discord.com/api/webhooks/"):
+                    json = {"content": json }
                 response = self.config.post(webhook, json=json)
             if response:
                 try:
